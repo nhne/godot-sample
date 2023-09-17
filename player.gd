@@ -32,9 +32,12 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		$Pivot.look_at(position + direction, Vector3.UP)
+		$AnimationPlayer.speed_scale = 4
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		$AnimationPlayer.speed_scale = 1
 
 	move_and_slide()
 	
