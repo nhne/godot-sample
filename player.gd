@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal hit
 
 const SPEED = 8.0
 
@@ -48,3 +49,12 @@ func _physics_process(delta):
 			if Vector3.UP.dot(collision.get_normal()) > 0.1:
 				mob.squash()
 				velocity.y = bounce_impulse
+
+
+func _on_mob_detector_body_entered(body):
+	die()
+	
+	
+func die():
+	hit.emit()
+	queue_free()
