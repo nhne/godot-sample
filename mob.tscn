@@ -8,8 +8,6 @@ size = Vector3(1.7712, 1, 2.25308)
 
 [node name="Mob" type="CharacterBody3D"]
 script = ExtResource("1_nk64c")
-min_speed = null
-max_speed = null
 
 [node name="Pivot" type="Node3D" parent="."]
 

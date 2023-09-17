@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Minimum speed of the mob in meters per second.
 @export var min_speed = 10
@@ -9,7 +7,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var max_speed = 18
 
 
-func initialize(start_position, player_posistion):
+func initialize(start_position, player_position):
 	look_at_from_position(start_position, player_position, Vector3.UP)
 	rotate_y(randf_range(-PI / 4, PI / 4))
 	
