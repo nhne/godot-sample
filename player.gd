@@ -65,6 +65,8 @@ func _physics_process(delta):
 			if Vector3.UP.dot(collision.get_normal()) > 0.1:
 				mob.squash()
 				velocity.y = bounce_impulse
+	
+	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 
 
 func _on_mob_detector_body_entered(body):
