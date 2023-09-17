@@ -37,12 +37,12 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		# $Pivot.rotation.y < direction.angle_to(Vector3.UP)
 		var simliarity = direction.dot(pivot_direction)
-		if simliarity < 0.99:
-			if direction.cross(pivot_direction).y > 0:
-				rotate_speed *= -1
-			pivot_direction = pivot_direction.rotated(Vector3.UP, rotate_speed * delta)
+		if simliarity < 0.999:
+			var speed = rotate_speed
+			if direction.cross(pivot_direction).y >= 0:
+				speed *= -1
+			pivot_direction = pivot_direction.rotated(Vector3.UP, speed * delta)
 		else:
 			pivot_direction = direction
 		$Pivot.look_at(position + pivot_direction, Vector3.UP)
