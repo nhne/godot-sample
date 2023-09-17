@@ -13,9 +13,14 @@ const SPEED = 8.0
 # simulation for graviy
 @export var gravity_simulation_coeff = 3
 
+# rotate speed for character
+@export var rotate_speed = PI * 3
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var pivot_direction = Vector3.FORWARD
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -32,7 +37,15 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		$Pivot.look_at(position + direction, Vector3.UP)
+		# $Pivot.rotation.y < direction.angle_to(Vector3.UP)
+		var simliarity = direction.dot(pivot_direction)
+		if simliarity < 0.99:
+			if direction.cross(pivot_direction).y > 0:
+				rotate_speed *= -1
+			pivot_direction = pivot_direction.rotated(Vector3.UP, rotate_speed * delta)
+		else:
+			pivot_direction = direction
+		$Pivot.look_at(position + pivot_direction, Vector3.UP)
 		$AnimationPlayer.speed_scale = 4
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
