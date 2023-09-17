@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://player.gd" id="1_ohagq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5igm8"]
-radius = 0.794082
+radius = 0.883944
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pk3op"]
 height = 0.467362
-radius = 1.08478
+radius = 0.968662
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 6
