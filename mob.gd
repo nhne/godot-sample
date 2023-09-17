@@ -8,6 +8,7 @@ extends CharacterBody3D
 
 signal squashed
 
+var is_squashed = false
 
 func initialize(start_position, player_position):
 	var player_without_y = player_position
@@ -29,5 +30,8 @@ func _on_visible_on_screen_notifier_3d_screen_exited():
 
 
 func squash():
+	if is_squashed:
+		return
+	is_squashed = true
 	squashed.emit()
 	queue_free()
